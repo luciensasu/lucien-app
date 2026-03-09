@@ -134,7 +134,9 @@ html, body {
 .tab-btn.active .tab-label { color: var(--accent2); }
 
 /* HOME */
-.home-header { padding: 28px 20px 14px; }
+.home-header {
+  padding: calc(16px + env(safe-area-inset-top, 0px)) 20px 14px;
+}
 .home-greeting {
   font-size: 10px; font-weight: 500; letter-spacing: 0.1em;
   text-transform: uppercase; color: var(--muted); margin-bottom: 8px;
@@ -196,6 +198,7 @@ html, body {
   cursor: pointer; display: flex; flex-direction: column; gap: 10px;
   transition: border-color 0.15s, background 0.15s, transform 0.1s;
   position: relative; overflow: hidden;
+  aspect-ratio: 1.4 / 1;
 }
 .sc::after {
   content: ''; position: absolute;
