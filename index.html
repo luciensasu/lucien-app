@@ -8,177 +8,92 @@
 <title>Lucien</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root {
-  --f: 'DM Sans', sans-serif;
-  --m: 'DM Mono', monospace;
-  --bg: #1c1830;
-  --bg1: #231f3a;
-  --bg2: #2c2748;
-  --bg3: #373059;
-  --bg4: #443a6a;
-  --bd: rgba(167,139,250,.14);
-  --bd2: rgba(167,139,250,.26);
-  --dv: rgba(255,255,255,.06);
-  --t: #f0ecff;
-  --t2: #b0a4cc;
-  --mu: #7a6da0;
-  --a: #8b5cf6;
-  --a2: #a78bfa;
-  --a3: #c4b5fd;
-  --gl: rgba(167,139,250,.14);
-  --gr: #34d399;
-  --re: #f87171;
-  --or: #fbbf24;
-}
-body.light {
-  --bg: #f4f1ff;
-  --bg1: #ece8ff;
-  --bg2: #fff;
-  --bg3: #ede9ff;
-  --bg4: #ddd7f5;
-  --bd: rgba(139,92,246,.14);
-  --bd2: rgba(139,92,246,.25);
-  --dv: rgba(0,0,0,.06);
-  --t: #1a1030;
-  --t2: #4a3d70;
-  --mu: #9585b8;
-  --gl: rgba(139,92,246,.1);
-}
+:root{--f:'DM Sans',sans-serif;--m:'DM Mono',monospace;--bg:#1c1830;--bg1:#231f3a;--bg2:#2c2748;--bg3:#373059;--bg4:#443a6a;--bd:rgba(167,139,250,.14);--bd2:rgba(167,139,250,.26);--dv:rgba(255,255,255,.06);--t:#f0ecff;--t2:#b0a4cc;--mu:#7a6da0;--a:#8b5cf6;--a2:#a78bfa;--a3:#c4b5fd;--gl:rgba(167,139,250,.14);--gr:#34d399;--re:#f87171;--or:#fbbf24}
+body.light{--bg:#f4f1ff;--bg1:#ece8ff;--bg2:#fff;--bg3:#ede9ff;--bg4:#ddd7f5;--bd:rgba(139,92,246,.14);--bd2:rgba(139,92,246,.25);--dv:rgba(0,0,0,.06);--t:#1a1030;--t2:#4a3d70;--mu:#9585b8;--gl:rgba(139,92,246,.1)}
+body.light #tb{background:var(--bg1)}body.light .mo{background:#fff}body.light .mi{background:var(--bg3);color:var(--t)}body.light .toast{background:rgba(255,255,255,.97);color:var(--t)}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
-html, body {
-  height: 100dvh;
-  min-height: -webkit-fill-available;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background: var(--bg);
-  font-family: var(--f);
-  color: var(--t);
-}
-#app {
-  height: 100dvh;
-  min-height: -webkit-fill-available;
-  width: 100%;
-  max-width: 430px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  background: var(--bg);
-  overflow: hidden;
-  padding-bottom: env(safe-area-inset-bottom, 0px);
-}
-.sc { display: none; flex-direction: column; flex: 1; overflow: hidden; position: relative; z-index: 1; }
-.sc.active { display: flex; }
-.sv {
-  flex: 1;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  padding-bottom: calc(120px + env(safe-area-inset-bottom, 0px));
-}
-.sv::-webkit-scrollbar { display: none; }
-
-#tb {
-  background: var(--bg1);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border-top: 1px solid var(--bd);
-  display: flex;
-  padding: 12px 0;
-  padding-bottom: calc(20px + env(safe-area-inset-bottom, 34px));
-  flex-shrink: 0;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  max-width: 430px;
-  margin: 0 auto;
-  z-index: 1000;
-  box-sizing: border-box;
-}
-.tb {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  cursor: pointer;
-  background: none;
-  border: none;
-  padding: 6px 0;
-}
-.tw {
-  width: 32px;
-  height: 32px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background .2s;
-}
-.tb.active .tw { background: rgba(139,92,246,.18); }
-.tb .tl {
-  font-size: 11px;
-  color: var(--mu);
-  font-weight: 600;
-  font-family: var(--m);
-  letter-spacing: .02em;
-  transition: color .2s;
-}
-.tb.active .tl { color: var(--a2); }
-
-/* === Einheitliche Header-Höhe === */
-.uniform-header {
-  padding: calc(56px + env(safe-area-inset-top, 0px)) 20px 24px;
-  text-align: left;
-}
-.uniform-subtitle {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--mu);
-  margin-bottom: 8px;
-  font-family: var(--m);
-}
-.uniform-title {
-  font-size: 34px;
-  font-weight: 800;
-  letter-spacing: -1.2px;
-  line-height: 1.1;
-  color: var(--t);
-}
-.uniform-title span {
-  background: linear-gradient(135deg, var(--a2), var(--a3));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Restliche Styles (fast 1:1 wie vorher, nur kleine Optimierungen) */
-.ab{margin:0 16px 16px;background:rgba(251,191,36,.06);border:1px solid rgba(251,191,36,.18);border-radius:14px;padding:14px 18px;display:flex;align-items:center;gap:14px;cursor:pointer}
-.qp{margin:0 16px 20px;background:var(--bg2);border:1px solid var(--bd2);border-radius:16px;padding:14px 18px;display:flex;align-items:center;gap:14px;cursor:pointer}
-.sl{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--mu);padding:0 20px 12px;font-family:var(--m)}
-.sg{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:0 16px;margin-bottom:24px}
-.sh{background:var(--bg2);border:1px solid var(--bd);border-radius:16px;padding:18px;cursor:pointer;display:flex;flex-direction:column;gap:14px;transition:all .15s;aspect-ratio:1.35/1}
-.si{width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center}
-.sn{font-size:16px;font-weight:700;color:var(--t)}
-.ch-header{width:100%;display:flex;justify-content:space-between;align-items:center}
-.ct{font-size:22px;font-weight:800;color:var(--t)}
-.pr{display:flex;gap:8px;padding:12px 16px;overflow-x:auto;scrollbar-width:none}
-.pi{padding:8px 16px;border-radius:24px;font-size:13px;font-weight:700;cursor:pointer;border:1px solid transparent;transition:all .15s}
-.pi.active{background:rgba(139,92,246,.25);border-color:var(--a2);color:var(--a3)}
-#msgs{flex:1;overflow-y:auto;padding:16px 18px;display:flex;flex-direction:column;gap:12px}
-.msg{max-width:85%;padding:12px 18px;border-radius:20px;font-size:15.5px;line-height:1.55}
-.mu2{background:linear-gradient(135deg,var(--a),var(--a2));color:#fff;align-self:flex-end;border-bottom-right-radius:6px}
-.mc{background:var(--bg2);border:1px solid var(--bd);color:var(--t);align-self:flex-start;border-bottom-left-radius:6px}
-.ia{background:var(--bg1);backdrop-filter:blur(24px);border-top:1px solid var(--bd);padding:14px 18px;padding-bottom:calc(20px + env(safe-area-inset-bottom,0px));flex-shrink:0}
-.ir{display:flex;align-items:center;gap:8px;background:var(--bg2);border:1px solid var(--bd2);border-radius:28px;padding:10px 12px}
-#ci{flex:1;font-size:16px;background:transparent;border:none;outline:none;resize:none;max-height:160px;line-height:1.5}
-.ib{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:none;cursor:pointer;transition:transform .1s}
-.ib:active{transform:scale(.92)}
-.is{background:var(--a);box-shadow:0 4px 18px rgba(139,92,246,.45)}
-.sh2{padding:calc(56px + env(safe-area-inset-top,0px)) 20px 24px;border-bottom:1px solid var(--bd)}
-.st2{font-size:30px;font-weight:800;letter-spacing:-1px}
+html,body{height:100%;background:var(--bg);font-family:var(--f);color:var(--t);overflow:hidden}
+#app{height:100dvh;min-height:-webkit-fill-available;width:100%;max-width:430px;margin:0 auto;display:flex;flex-direction:column;position:relative;overflow:hidden;background:var(--bg)}
+#app::before{content:'';position:fixed;top:-80px;left:50%;transform:translateX(-50%);width:300px;height:200px;background:radial-gradient(ellipse,rgba(139,92,246,.08) 0%,transparent 70%);pointer-events:none;z-index:0}
+.sc{display:none;flex-direction:column;flex:1;overflow:hidden;position:relative;z-index:1}.sc.active{display:flex}
+.sv{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:calc(120px + env(safe-area-inset-bottom,0px))}.sv::-webkit-scrollbar{display:none}
+#tb{background:var(--bg1);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-top:1px solid var(--bd);display:flex;padding:10px 0;padding-bottom:calc(20px + env(safe-area-inset-bottom,34px));flex-shrink:0;position:fixed;bottom:0;left:0;right:0;max-width:430px;margin:0 auto;z-index:1000;box-sizing:border-box}
+.tb{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;background:none;border:none;padding:4px 0}
+.tw{width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.tb.active .tw{background:rgba(139,92,246,.15)}.tb .tl{font-size:10px;color:var(--mu);font-weight:600;font-family:var(--m);letter-spacing:.02em;transition:color .2s}.tb.active .tl{color:var(--a2)}
+/* === Einheitliche Header für alle Seiten === */
+.uniform-header{padding:calc(56px + env(safe-area-inset-top,0px)) 20px 24px}
+.uniform-subtitle{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mu);margin-bottom:8px;font-family:var(--m)}
+.uniform-title{font-size:34px;font-weight:800;letter-spacing:-1.2px;line-height:1.1;color:var(--t)}
+.uniform-title span{background:linear-gradient(135deg,var(--a2),var(--a3));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hh .uniform-header .uniform-title{font-size:36px} /* Home etwas größer */
+.ab{margin:0 16px 10px;background:rgba(251,191,36,.05);border:1px solid rgba(251,191,36,.16);border-radius:12px;padding:11px 14px;display:flex;align-items:center;gap:10px;cursor:pointer}
+.ad{width:5px;height:5px;border-radius:50%;background:var(--or);flex-shrink:0;box-shadow:0 0 8px rgba(251,191,36,.6)}.at{font-size:13px;font-weight:600;color:var(--or)}.as{font-size:11px;color:var(--mu);margin-top:1px}
+.qp{margin:0 16px 14px;background:var(--bg2);border:1px solid var(--bd2);border-radius:13px;padding:11px 14px;display:flex;align-items:center;gap:10px;cursor:pointer;transition:border-color .2s,box-shadow .2s}
+.qp:active{border-color:var(--a);box-shadow:0 0 0 3px var(--gl)}.qt{font-size:14px;color:var(--mu);flex:1}
+.sl{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mu);padding:0 20px;margin-bottom:8px;font-family:var(--m)}
+.sg{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;padding:0 16px;margin-bottom:16px}
+.sh{background:var(--bg2);border:1px solid var(--bd);border-radius:14px;padding:14px;cursor:pointer;display:flex;flex-direction:column;gap:10px;transition:border-color .15s,background .15s,transform .1s;position:relative;overflow:hidden;aspect-ratio:1.4/1}
+.sh::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;opacity:0;transition:opacity .2s}
+.sh:active{transform:scale(.95);background:var(--bg3)}.sh:active::after{opacity:1}
+.sp::after{background:linear-gradient(90deg,transparent,var(--a2),transparent)}.st::after{background:linear-gradient(90deg,transparent,var(--gr),transparent)}.sa::after{background:linear-gradient(90deg,transparent,var(--or),transparent)}.sv2::after{background:linear-gradient(90deg,transparent,var(--a3),transparent)}.sr::after{background:linear-gradient(90deg,transparent,var(--re),transparent)}.sk::after{background:linear-gradient(90deg,transparent,#7dd3fc,transparent)}
+.si{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center}
+.sp .si{background:rgba(139,92,246,.15)}.st .si{background:rgba(52,211,153,.12)}.sa .si{background:rgba(251,191,36,.1)}.sv2 .si{background:rgba(196,181,253,.1)}.sr .si{background:rgba(248,113,113,.1)}.sk .si{background:rgba(125,211,252,.1)}
+.sn{font-size:13px;font-weight:600;color:var(--t);line-height:1.3}
+.rw{margin:0 16px;background:var(--bg2);border:1px solid var(--bd);border-radius:13px;overflow:hidden}
+.rr{padding:11px 14px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--dv);cursor:pointer;transition:background .12s}.rr:last-child{border-bottom:none}.rr:active{background:var(--bg3)}
+.rb{width:2px;height:26px;border-radius:2px;flex-shrink:0}.ri{flex:1;min-width:0}.rn{font-size:13px;font-weight:600;color:var(--t);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.rs{font-size:10px;color:var(--mu);margin-top:1px;font-family:var(--m)}.rt{font-size:10px;color:var(--mu);flex-shrink:0;font-family:var(--m)}
+.ch{background:var(--bg1);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--bd);padding:calc(56px + env(safe-area-inset-top,0px)) 16px 12px;display:flex;flex-direction:column;align-items:center;flex-shrink:0;z-index:5}
+.ct{font-size:15px;font-weight:700;color:var(--t)}.cm{font-size:10px;color:var(--mu);font-family:var(--m);margin-top:1px}
+.pr{display:flex;gap:5px;padding:9px 14px 6px;overflow-x:auto;scrollbar-width:none;flex-shrink:0}.pr::-webkit-scrollbar{display:none}
+.pi{padding:5px 13px;border-radius:20px;font-size:11px;font-weight:600;cursor:pointer;white-space:nowrap;border:1px solid transparent;font-family:var(--f);transition:all .15s;flex-shrink:0}
+.pi.active{background:rgba(139,92,246,.18);border-color:rgba(139,92,246,.5);color:var(--a3)}.pi.inactive{background:var(--bg2);border-color:var(--bd);color:var(--t2)}
+#msgs{flex:1;overflow-y:auto;padding:12px 14px;display:flex;flex-direction:column;gap:8px;-webkit-overflow-scrolling:touch;scrollbar-width:none}#msgs::-webkit-scrollbar{display:none}
+.msg{max-width:84%;padding:10px 14px;border-radius:16px;font-size:14px;line-height:1.55;font-family:var(--f);font-weight:400;word-break:break-word}
+.mu2{background:linear-gradient(140deg,var(--a),#7c3aed);color:#fff;align-self:flex-end;border-bottom-right-radius:4px;font-weight:500;box-shadow:0 4px 18px rgba(139,92,246,.28)}
+.mc{background:var(--bg2);border:1px solid var(--bd);color:var(--t);align-self:flex-start;border-bottom-left-radius:4px}
+.ms{background:rgba(139,92,246,.05);border:1px solid var(--bd);color:var(--mu);align-self:center;font-size:11px;padding:4px 12px;border-radius:8px;text-align:center;max-width:90%;font-family:var(--m)}
+.mt{background:var(--bg2);border:1px solid var(--bd);align-self:flex-start;border-bottom-left-radius:4px;padding:14px 16px}
+.td{display:flex;gap:5px;align-items:center}.td span{width:6px;height:6px;background:var(--a);border-radius:50%;animation:bounce 1.2s infinite;opacity:.7}.td span:nth-child(2){animation-delay:.2s}.td span:nth-child(3){animation-delay:.4s}
+@keyframes bounce{0%,60%,100%{transform:translateY(0);opacity:.7}30%{transform:translateY(-5px);opacity:1}}
+.es{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:40px 30px;text-align:center}
+.eg{width:48px;height:48px;border-radius:14px;background:rgba(139,92,246,.08);border:1px solid var(--bd2);display:flex;align-items:center;justify-content:center;margin-bottom:4px}
+.et{font-size:16px;font-weight:700;color:var(--t2)}.eb{font-size:13px;color:var(--mu);line-height:1.6}
+.su{padding:0 14px 8px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;flex-shrink:0}.su::-webkit-scrollbar{display:none}
+.cp{padding:6px 12px;border-radius:20px;background:var(--bg2);color:var(--t2);font-size:12px;font-weight:500;cursor:pointer;border:1px solid var(--bd);font-family:var(--f);transition:all .15s;white-space:nowrap;flex-shrink:0}
+.cp:active{background:rgba(139,92,246,.18);border-color:var(--a);color:var(--a3)}
+.ia{background:var(--bg1);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-top:1px solid var(--bd);padding:10px 14px;padding-bottom:calc(20px + env(safe-area-inset-bottom,34px));flex-shrink:0}
+.ir{display:flex;align-items:center;gap:4px;background:var(--bg2);border:1px solid var(--bd2);border-radius:20px;padding:7px 8px;transition:border-color .2s,box-shadow .2s}.ir:focus-within{border-color:var(--a);box-shadow:0 0 0 3px var(--gl)}
+#ci{flex:1;font-size:14px;color:var(--t);background:transparent;border:none;outline:none;font-family:var(--f);resize:none;max-height:120px;line-height:1.5;min-height:22px}#ci::placeholder{color:var(--mu)}
+.ib{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:none;cursor:pointer;flex-shrink:0;transition:background .12s,transform .1s}.ib:active{transform:scale(.88)}
+.ig{background:transparent}.ig:active{background:var(--bg3)}.iat{background:var(--bg3)}.iat:active{background:var(--bg4)}.is{background:var(--a);box-shadow:0 2px 14px rgba(139,92,246,.38)}.is:disabled{background:var(--bg3);box-shadow:none}
+.fp{background:var(--bg2);border:1px solid var(--bd);border-radius:10px;padding:7px 12px;display:flex;align-items:center;gap:8px;align-self:flex-end;max-width:82%}.fp span{font-size:12px;color:var(--t2);font-family:var(--m)}
+.sh2{padding:calc(56px + env(safe-area-inset-top,0px)) 20px 20px;border-bottom:1px solid var(--bd)}.st2{font-size:28px;font-weight:800;letter-spacing:-.8px}
+.pc{margin:16px 16px 0;background:var(--bg2);border:1px solid var(--bd);border-radius:14px;padding:16px;display:flex;align-items:center;gap:14px}
+.pav{width:46px;height:46px;border-radius:13px;background:linear-gradient(135deg,var(--a),#7c3aed);display:flex;align-items:center;justify-content:center;font-size:17px;font-weight:800;color:#fff;flex-shrink:0;box-shadow:0 4px 16px rgba(139,92,246,.3);font-family:var(--m)}
+.pn{font-size:15px;font-weight:700;color:var(--t)}.ps{font-size:11px;color:var(--mu);margin-top:3px;font-family:var(--m);display:flex;align-items:center;gap:5px}
+.ss{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mu);padding:16px 20px 8px;font-family:var(--m)}
+.cl{background:var(--bg2);border:1px solid var(--bd);border-radius:14px;overflow:hidden;margin:0 16px}
+.cr{padding:13px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--dv);cursor:pointer;transition:background .12s}.cr:last-child{border-bottom:none}.cr:active{background:var(--bg3)}
+.rd{width:7px;height:7px;border-radius:50%;flex-shrink:0}.rtt{font-size:14px;font-weight:600;color:var(--t)}.rsb{font-size:11px;color:var(--mu);margin-top:2px;font-family:var(--m)}.rc{margin-left:auto}
+.tg{width:38px;height:22px;border-radius:11px;position:relative;cursor:pointer;flex-shrink:0;margin-left:auto;transition:background .2s,box-shadow .2s;border:1px solid var(--bd2)}
+.tg.on{background:var(--a);border-color:var(--a);box-shadow:0 0 10px rgba(139,92,246,.35)}.tg.off{background:var(--bg4)}
+.tk{position:absolute;top:2px;width:16px;height:16px;background:#fff;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,.4);transition:left .2s}.tg.on .tk{left:calc(100% - 18px)}.tg.off .tk{left:2px}
+.uc{background:var(--bg2);border:1px solid var(--bd);border-radius:14px;padding:14px;margin:0 16px}
+.ut{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}.ul{font-size:13px;font-weight:600;color:var(--t2)}.uv{font-size:13px;color:var(--a2);font-weight:700;font-family:var(--m)}.ub{height:3px;background:var(--bg4);border-radius:2px;overflow:hidden}.uf{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--a),var(--a3));transition:width .5s}.us{font-size:11px;color:var(--mu);margin-top:6px;font-family:var(--m)}
+.ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:100;align-items:flex-end;justify-content:center;backdrop-filter:blur(4px)}.ov.show{display:flex}
+.mo{background:var(--bg1);border:1px solid var(--bd2);border-top:1px solid rgba(139,92,246,.3);border-radius:20px 20px 0 0;padding:22px 20px calc(30px + env(safe-area-inset-bottom,0px));width:100%;max-width:430px;animation:su .26s cubic-bezier(.34,1.2,.64,1)}
+@keyframes su{from{transform:translateY(100%);opacity:0}to{transform:translateY(0);opacity:1}}
+.mh{width:30px;height:3px;background:var(--bg4);border-radius:2px;margin:0 auto 18px}.mti{font-size:17px;font-weight:700;color:var(--t);margin-bottom:6px}.msb{font-size:13px;color:var(--mu);margin-bottom:16px;line-height:1.5}
+.mi{width:100%;background:var(--bg2);border:1px solid var(--bd2);border-radius:11px;padding:12px 14px;font-size:13px;color:var(--t);font-family:var(--m);outline:none;margin-bottom:12px}.mi:focus{border-color:var(--a);box-shadow:0 0 0 3px var(--gl)}.mi::placeholder{color:var(--mu)}
+.mb{width:100%;padding:13px;border-radius:11px;border:none;font-size:14px;font-weight:700;font-family:var(--f);cursor:pointer;margin-bottom:8px;transition:opacity .15s,transform .1s}.mb:active{transform:scale(.98);opacity:.9}
+.mbp{background:var(--a);color:#fff;box-shadow:0 4px 16px rgba(139,92,246,.3)}.mbs{background:var(--bg3);color:var(--t2)}
+/* provider badge */
+.pvbadge{display:inline-flex;align-items:center;gap:6px;background:var(--bg3);border:1px solid var(--bd);border-radius:8px;padding:5px 10px;margin-bottom:14px;font-size:11px;font-weight:600;color:var(--t2);font-family:var(--m)}
+.pvdot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+/* model option */
+.mo2{background:var(--bg2);border:1px solid var(--bd);border-radius:11px;padding:12px 13px;cursor:pointer;transition:border-color .15s,background .15s;display:flex;align-items:center;gap:12px;margin-bottom:8px}.mo2.active{border-color:var(--a);background:rgba(139,92,246,.07)}.mo2:active{opacity:.8}
+.mdo{width:7px;height:7px;border-radius:50%;flex-shrink:0}.mn{font-size:13px;font-weight:700;color:var(--t);font-family:var(--m)}.md{font-size:11px;color:var(--mu);margin-top:2px}.mck{margin-left:auto;color:var(--a2);font-size:13px;font-weight:700}
 </style>
 </head>
 <body class="light">
@@ -195,33 +110,322 @@ html, body {
     <svg width="6" height="10" viewBox="0 0 6 11" fill="none"><path d="M1 1l4 4.5L1 10" stroke="var(--mu)" stroke-width="1.5" stroke-linecap="round"/></svg>
   </div>
   <div class="qp" onclick="goChat()">
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--mu)" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--mu)" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
     <span class="qt">Frag mich etwas…</span>
-    <svg width="6" height="10" viewBox="0 0 6 11" fill="none"><path d="M1 1l4 4.5L1 10" stroke="var(--mu)" stroke-width="1.5"/></svg>
+    <svg width="6" height="10" viewBox="0 0 6 11" fill="none"><path d="M1 1l4 4.5L1 10" stroke="var(--mu)" stroke-width="1.5" stroke-linecap="round"/></svg>
   </div>
   <div class="sl">AKTIONEN</div>
   <div class="sg">
-    <!-- deine Aktionen wie vorher -->
-    <div class="sh sp" onclick="go('chat')"><div class="si"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--a2)" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div class="sn">Chat</div></div>
-    <div class="sh st" onclick="go('email')"><div class="si"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gr)" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg></div><div class="sn">E-Mail</div></div>
-    <!-- ... die anderen 4 Aktionen bleiben genau gleich wie in deiner Version ... -->
+    <div class="sh sp" onclick="go('chat')"><div class="si"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--a2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div class="sn">Chat</div></div>
+    <div class="sh st" onclick="go('email')"><div class="si"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gr)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 7L2 7"/></svg></div><div class="sn">E-Mail</div></div>
+    <div class="sh sa" onclick="go('calendar')"><div class="si"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--or)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><div class="sn">Termin</div></div>
+    <div class="sh sv2" onclick="go('note')"><div class="si"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--a3)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="12" y2="17"/></svg></div><div class="sn">Notiz</div></div>
+    <div class="sh sr" onclick="go('photo')"><div class="si"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--re)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg></div><div class="sn">Foto</div></div>
+    <div class="sh sk" onclick="go('message')"><div class="si"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7dd3fc" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="9" y1="10" x2="15" y2="10"/></svg></div><div class="sn">Nachricht</div></div>
   </div>
-  <div class="sl">ZULETZT</div>
+  <div class="sl">Zuletzt</div>
   <div class="rw" id="rl"></div>
+  <div style="height:8px"></div>
 </div>
 </div>
-
-<!-- Chat-Screen, Settings-Screen, Modals und der REST bleiben 1:1 wie in deiner Originalversion -->
-
-<!-- Toolbar -->
+<div id="chat-screen" class="sc">
+  <div id="chat-list-view" style="display:flex;flex-direction:column;flex:1;overflow:hidden">
+    <div class="ch" style="flex-direction:row;justify-content:space-between;align-items:center">
+      <div>
+        <div class="ct">Chats</div>
+        <div class="cm" id="cmodel">–</div>
+      </div>
+      <button onclick="newChat()" style="display:flex;align-items:center;gap:6px;background:var(--a);border:none;border-radius:10px;padding:7px 13px;cursor:pointer;color:#fff;font-size:13px;font-weight:700;font-family:var(--f);box-shadow:0 2px 12px rgba(139,92,246,.35)">
+        <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7h12" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+        Neu
+      </button>
+    </div>
+    <div class="sv" id="chat-list-scroll" style="padding-bottom:8px">
+      <div id="chat-list-items"></div>
+    </div>
+  </div>
+  <div id="chat-active-view" style="display:none;flex-direction:column;flex:1;overflow:hidden">
+    <div class="ch" style="flex-direction:row;align-items:center;gap:10px">
+      <button onclick="backToList()" class="ib ig" style="flex-shrink:0">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--t2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <div style="flex:1;min-width:0">
+        <div class="ct" id="ctitle" style="text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Neuer Chat</div>
+        <div class="cm" id="csubtitle" style="text-align:left">Chat</div>
+      </div>
+      <button onclick="deleteCurrentChat()" class="ib ig" style="flex-shrink:0">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--re)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="3,6 5,6 21,6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg>
+      </button>
+    </div>
+    <div class="pr">
+      <button class="pi active" onclick="setMode('chat',this)">Chat</button>
+      <button class="pi inactive" onclick="setMode('email',this)">E-Mail</button>
+      <button class="pi inactive" onclick="setMode('calendar',this)">Termin</button>
+      <button class="pi inactive" onclick="setMode('note',this)">Notiz</button>
+      <button class="pi inactive" onclick="setMode('file',this)">Datei</button>
+      <button class="pi inactive" onclick="setMode('photo',this)">Foto</button>
+      <button class="pi inactive" onclick="setMode('message',this)">Nachricht</button>
+    </div>
+    <div id="msgs" style="flex:1;overflow-y:auto;padding:12px 14px;display:flex;flex-direction:column;gap:8px;-webkit-overflow-scrolling:touch;scrollbar-width:none">
+      <div class="es" id="es">
+        <div class="eg"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--a)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <div class="et">Wie kann ich helfen?</div>
+        <div class="eb">Schreib etwas oder wähl einen Modus.</div>
+      </div>
+    </div>
+    <div class="su" id="sugg"></div>
+    <div class="ia">
+      <div class="ir">
+        <button class="ib iat" onclick="trigFile()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--mu)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66L9.41 17.41a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg></button>
+        <textarea id="ci" placeholder="Nachricht…" rows="1" oninput="ar(this)" onkeydown="hk(event)"></textarea>
+        <button class="ib ig" id="mic" onclick="toggleMic()"><svg id="mico" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--mu)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10a7 7 0 0 0 14 0"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="9" y1="22" x2="15" y2="22"/></svg></button>
+        <button class="ib is" id="send" onclick="send()"><svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M7 12V2M7 2L3 6M7 2L11 6" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+    </div>
+  </div>
+  <input type="file" id="fi" accept="*/*" onchange="onFile(event)">
+</div>
+<div id="settings-screen" class="sc">
+<div class="sv">
+  <div class="uniform-header">
+    <div class="uniform-subtitle">EINSTELLUNGEN</div>
+    <div class="uniform-title">Einstellungen</div>
+  </div>
+  <div class="pc">
+    <div class="pav">L</div>
+    <div><div class="pn">Lucien</div><div class="ps" id="apistat"><span class="sd" style="background:var(--or);box-shadow:0 0 5px rgba(251,191,36,.5)"></span>Kein API Key</div></div>
+  </div>
+  <div class="ss">KI & API</div>
+  <div class="cl">
+    <div class="cr" onclick="showApi()"><div class="rd" style="background:var(--a2);box-shadow:0 0 6px rgba(167,139,250,.4)"></div><div style="flex:1"><div class="rtt">API Key</div><div class="rsb" id="apidisp">Nicht gesetzt</div></div><div class="rc"><svg width="6" height="10" viewBox="0 0 6 11" fill="none"><path d="M1 1l4 4.5L1 10" stroke="var(--mu)" stroke-width="1.5" stroke-linecap="round"/></svg></div></div>
+    <div class="cr" onclick="showModel()"><div class="rd" style="background:var(--gr);box-shadow:0 0 6px rgba(52,211,153,.35)"></div><div style="flex:1"><div class="rtt">Modell</div><div class="rsb" id="mdisp">–</div></div><div class="rc"><svg width="6" height="10" viewBox="0 0 6 11" fill="none"><path d="M1 1l4 4.5L1 10" stroke="var(--mu)" stroke-width="1.5" stroke-linecap="round"/></svg></div></div>
+    <div class="cr"><div class="rd" style="background:var(--or)"></div><div style="flex:1"><div class="rtt">Anbieter</div><div class="rsb" id="pvdisp">–</div></div></div>
+  </div>
+  <div class="ss">Nutzung</div>
+  <div class="uc"><div class="ut"><span class="ul">API Kosten (est.)</span><span class="uv" id="ucost">$0.0000</span></div><div class="ub"><div class="uf" id="ufill" style="width:0%"></div></div><div class="us" id="utok">0 Tokens verwendet</div></div>
+  <div class="ss">Darstellung</div>
+  <div class="cl"><div class="cr"><div class="rd" style="background:var(--a3);box-shadow:0 0 6px rgba(196,181,253,.4)"></div><div style="flex:1"><div class="rtt">Light Mode</div></div><div class="tg on" id="ltog" onclick="toggleLight(this)"><div class="tk"></div></div></div></div>
+  <div class="ss">Daten</div>
+  <div class="cl">
+    <div class="cr" onclick="clearHist()"><div class="rd" style="background:var(--or)"></div><div style="flex:1"><div class="rtt">Chat-Verlauf löschen</div></div><div class="rc"><svg width="6" height="10" viewBox="0 0 6 11" fill="none"><path d="M1 1l4 4.5L1 10" stroke="var(--mu)" stroke-width="1.5" stroke-linecap="round"/></svg></div></div>
+    <div class="cr" onclick="clearKey()"><div class="rd" style="background:var(--re)"></div><div style="flex:1"><div class="rtt">API Key entfernen</div></div><div class="rc"><svg width="6" height="10" viewBox="0 0 6 11" fill="none"><path d="M1 1l4 4.5L1 10" stroke="var(--mu)" stroke-width="1.5" stroke-linecap="round"/></svg></div></div>
+  </div>
+  <div class="ss">Info</div>
+  <div class="cl"><div class="cr"><div class="rd" style="background:var(--mu)"></div><div style="flex:1"><div class="rtt">Version</div><div class="rsb">Lucien 1.0.0</div></div></div></div>
+  <div style="height:24px"></div>
+</div>
+</div>
 <div id="tb">
-  <button class="tb active" onclick="tab('home')" id="tab-home"><div class="tw"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--a2)" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg></div><span class="tl" style="color:var(--a2)">Home</span></button>
-  <button class="tb" onclick="tab('chat')" id="tab-chat"><div class="tw"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--mu)" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><span class="tl">Chat</span></button>
-  <button class="tb" onclick="tab('settings')" id="tab-settings"><div class="tw"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--mu)" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div><span class="tl">Einstellungen</span></button>
+  <button class="tb active" onclick="tab('home')" id="tab-home"><div class="tw"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--a2)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg></div><span class="tl" style="color:var(--a2)">Home</span></button>
+  <button class="tb" onclick="tab('chat')" id="tab-chat"><div class="tw"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--mu)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><span class="tl">Chat</span></button>
+  <button class="tb" onclick="tab('settings')" id="tab-settings"><div class="tw"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--mu)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div><span class="tl">Einstellungen</span></button>
 </div>
 
-<!-- Modals, Toast, Script – bleiben 1:1 wie in deiner Originalversion -->
-
+<!-- API MODAL -->
+<div class="ov" id="apim">
+  <div class="mo">
+    <div class="mh"></div>
+    <div class="mti">API Key eingeben</div>
+    <div class="msb">Gib deinen Key ein — Anthropic, Groq, Google oder OpenAI. Die App erkennt den Anbieter automatisch.</div>
+    <div id="pvbadge" style="display:none" class="pvbadge"><div class="pvdot" id="pvdot"></div><span id="pvname"></span></div>
+    <input class="mi" type="password" id="aki" placeholder="Key eingeben…" autocomplete="off" spellcheck="false" oninput="detectProvider(this.value)">
+    <button class="mb mbp" onclick="saveKey()">Speichern</button>
+    <button class="mb mbs" onclick="hideApi()">Abbrechen</button>
+  </div>
 </div>
-</body>
-</html>
+
+<!-- MODEL MODAL -->
+<div class="ov" id="mdm">
+  <div class="mo">
+    <div class="mh"></div>
+    <div class="mti">Modell wählen</div>
+    <div class="msb" id="mdm-sub">Wähle ein Modell für deinen Anbieter.</div>
+    <div id="model-list"></div>
+    <button class="mb mbs" onclick="hideModel()">Schließen</button>
+  </div>
+</div>
+
+<!-- INSTALL MODAL -->
+<div class="ov" id="instm"><div class="mo" style="border-radius:20px;margin:16px;width:calc(100% - 32px);max-width:398px"><div class="mh"></div>
+<div style="display:flex;align-items:center;gap:12px;margin-bottom:14px"><div style="width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--a),#7c3aed);display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 16px rgba(139,92,246,.35)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><div><div style="font-size:17px;font-weight:700;color:var(--t)">Lucien installieren</div><div style="font-size:12px;color:var(--mu);font-family:var(--m);margin-top:2px">Für das beste Erlebnis</div></div></div>
+<div style="font-size:13px;color:var(--t2);line-height:1.6;margin-bottom:18px">Füge Lucien zum Homescreen hinzu — immer griffbereit, ohne Browser-Leiste, wie eine echte App.</div>
+<button class="mb mbp" onclick="showTut()">Wie geht das?</button><button class="mb mbs" onclick="dimiss()">Später</button></div></div>
+
+<!-- TUTORIAL MODAL -->
+<div class="ov" id="tutm"><div class="mo" style="border-radius:20px 20px 0 0"><div class="mh"></div>
+<div style="font-size:17px;font-weight:700;color:var(--t);margin-bottom:4px">App installieren</div>
+<div style="font-size:12px;color:var(--mu);font-family:var(--m);margin-bottom:20px">Schritt für Schritt</div>
+<div style="display:flex;flex-direction:column;gap:12px;margin-bottom:20px">
+  <div style="display:flex;gap:14px;align-items:flex-start"><div style="width:28px;height:28px;border-radius:8px;background:rgba(139,92,246,.15);border:1px solid var(--bd2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px;font-weight:700;color:var(--a2);font-family:var(--m)">1</div><div><div style="font-size:14px;font-weight:600;color:var(--t);margin-bottom:3px">Teilen-Symbol tippen</div><div style="font-size:12px;color:var(--mu);line-height:1.5">Tippe unten in Safari auf das <strong style="color:var(--a2)">Teilen-Symbol</strong> — Kasten mit Pfeil nach oben.</div></div></div>
+  <div style="height:1px;background:var(--dv)"></div>
+  <div style="display:flex;gap:14px;align-items:flex-start"><div style="width:28px;height:28px;border-radius:8px;background:rgba(139,92,246,.15);border:1px solid var(--bd2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px;font-weight:700;color:var(--a2);font-family:var(--m)">2</div><div><div style="font-size:14px;font-weight:600;color:var(--t);margin-bottom:3px">„Zum Home-Bildschirm"</div><div style="font-size:12px;color:var(--mu);line-height:1.5">Scrolle nach unten und tippe auf <strong style="color:var(--a2)">„Zum Home-Bildschirm"</strong>.</div></div></div>
+  <div style="height:1px;background:var(--dv)"></div>
+  <div style="display:flex;gap:14px;align-items:flex-start"><div style="width:28px;height:28px;border-radius:8px;background:rgba(139,92,246,.15);border:1px solid var(--bd2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px;font-weight:700;color:var(--a2);font-family:var(--m)">3</div><div><div style="font-size:14px;font-weight:600;color:var(--t);margin-bottom:3px">„Hinzufügen" bestätigen</div><div style="font-size:12px;color:var(--mu);line-height:1.5">Tippe oben rechts auf <strong style="color:var(--a2)">„Hinzufügen"</strong>. Lucien erscheint auf deinem Homescreen.</div></div></div>
+  <div style="height:1px;background:var(--dv)"></div>
+  <div style="display:flex;gap:14px;align-items:flex-start"><div style="width:28px;height:28px;border-radius:8px;background:rgba(52,211,153,.12);border:1px solid rgba(52,211,153,.25);display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gr)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20,6 9,17 4,12"/></svg></div><div><div style="font-size:14px;font-weight:600;color:var(--gr);margin-bottom:3px">Fertig!</div><div style="font-size:12px;color:var(--mu);line-height:1.5">Kein Browser, volles Display — genau wie eine native App.</div></div></div>
+</div>
+<div style="background:rgba(139,92,246,.06);border:1px solid var(--bd);border-radius:10px;padding:10px 12px;margin-bottom:16px"><div style="font-size:11px;color:var(--mu);font-family:var(--m);line-height:1.5">Funktioniert auf <strong style="color:var(--t2)">iPhone &amp; iPad</strong> mit Safari. Android: Chrome-Menü → „App installieren".</div></div>
+<button class="mb mbp" onclick="dimiss()">Verstanden</button>
+</div></div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ── Provider config ────────────────────────────────────────────────────────
+const PROVIDERS = {
+  anthropic: {
+    name: 'Anthropic', color: '#c96442',
+    detect: k => k.startsWith('sk-ant-'),
+    models: [
+      {id:'claude-haiku-4-5', label:'Claude Haiku 4.5', desc:'Schnell & günstig · $0.25/1M', color:'#7dd3fc'},
+      {id:'claude-sonnet-4-6', label:'Claude Sonnet 4.6', desc:'Ausgewogen · $3/1M', color:'#a78bfa', def:true},
+      {id:'claude-opus-4-6', label:'Claude Opus 4.6', desc:'Stärkste KI · $15/1M', color:'#c4b5fd'},
+    ],
+    call: async (key, model, msgs, sys) => {
+      const r = await fetch('https://api.anthropic.com/v1/messages', {
+        method:'POST',
+        headers:{'Content-Type':'application/json','x-api-key':key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+        body: JSON.stringify({model, max_tokens:1500, system:sys, messages:msgs})
+      });
+      const d = await r.json();
+      if(d.error) throw new Error(d.error.message);
+      return {text: d.content?.[0]?.text||'', tokens:(d.usage?.input_tokens||0)+(d.usage?.output_tokens||0)};
+    }
+  },
+  groq: {
+    name: 'Groq', color: '#f55036',
+    detect: k => k.startsWith('gsk_'),
+    models: [
+      {id:'llama-3.3-70b-versatile', label:'Llama 3.3 70B', desc:'Kostenlos · sehr gut', color:'#34d399', def:true},
+      {id:'llama-3.1-8b-instant', label:'Llama 3.1 8B', desc:'Kostenlos · blitzschnell', color:'#7dd3fc'},
+      {id:'mixtral-8x7b-32768', label:'Mixtral 8x7B', desc:'Kostenlos · großes Kontextfenster', color:'#a78bfa'},
+      {id:'gemma2-9b-it', label:'Gemma 2 9B', desc:'Kostenlos · von Google', color:'#fbbf24'},
+    ],
+    call: async (key, model, msgs, sys) => {
+      const mapped = msgs.map(m => ({
+        role: m.role,
+        content: typeof m.content === 'string' ? m.content : (m.content.find(c=>c.type==='text')?.text||'')
+      }));
+      const r = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+        method:'POST',
+        headers:{'Content-Type':'application/json','Authorization':'Bearer '+key},
+        body: JSON.stringify({model, max_tokens:1500, messages:[{role:'system',content:sys},...mapped]})
+      });
+      const d = await r.json();
+      if(d.error) throw new Error(d.error.message);
+      return {text: d.choices?.[0]?.message?.content||'', tokens:(d.usage?.total_tokens||0)};
+    }
+  },
+  google: {
+    name: 'Google', color: '#4285f4',
+    detect: k => k.startsWith('AIza'),
+    models: [
+      {id:'gemini-1.5-flash', label:'Gemini 1.5 Flash', desc:'Kostenlos · schnell', color:'#34d399', def:true},
+      {id:'gemini-1.5-pro', label:'Gemini 1.5 Pro', desc:'Kostenlos · leistungsstark', color:'#4285f4'},
+      {id:'gemini-2.0-flash', label:'Gemini 2.0 Flash', desc:'Kostenlos · neuestes Modell', color:'#a78bfa'},
+    ],
+    call: async (key, model, msgs, sys) => {
+      const contents = msgs.map(m => ({
+        role: m.role==='assistant'?'model':'user',
+        parts:[{text: typeof m.content==='string' ? m.content : (m.content.find(c=>c.type==='text')?.text||'')}]
+      }));
+      const r = await fetch('https://generativelanguage.googleapis.com/v1beta/models/'+model+':generateContent?key='+key, {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({systemInstruction:{parts:[{text:sys}]},contents})
+      });
+      const d = await r.json();
+      if(d.error) throw new Error(d.error.message);
+      return {text: d.candidates?.[0]?.content?.parts?.[0]?.text||'', tokens:(d.usageMetadata?.promptTokenCount||0)+(d.usageMetadata?.candidatesTokenCount||0)};
+    }
+  },
+  openai: {
+    name: 'OpenAI', color: '#10a37f',
+    detect: k => k.startsWith('sk-') && !k.startsWith('sk-ant-'),
+    models: [
+      {id:'gpt-4o-mini', label:'GPT-4o Mini', desc:'Günstig · schnell', color:'#34d399', def:true},
+      {id:'gpt-4o', label:'GPT-4o', desc:'Leistungsstark', color:'#10a37f'},
+      {id:'gpt-4-turbo', label:'GPT-4 Turbo', desc:'Großes Kontextfenster', color:'#a78bfa'},
+    ],
+    call: async (key, model, msgs, sys) => {
+      const mapped = msgs.map(m => ({
+        role: m.role,
+        content: typeof m.content === 'string' ? m.content : (m.content.find(c=>c.type==='text')?.text||'')
+      }));
+      const r = await fetch('https://api.openai.com/v1/chat/completions', {
+        method:'POST',
+        headers:{'Content-Type':'application/json','Authorization':'Bearer '+key},
+        body: JSON.stringify({model, max_tokens:1500, messages:[{role:'system',content:sys},...mapped]})
+      });
+      const d = await r.json();
+      if(d.error) throw new Error(d.error.message);
+      return {text: d.choices?.[0]?.message?.content||'', tokens:(d.usage?.total_tokens||0)};
+    }
+  }
+};
+function detectProviderFromKey(k) {
+  for(const [id,p] of Object.entries(PROVIDERS)) if(p.detect(k)) return id;
+  return null;
+}
+// ── State ──────────────────────────────────────────────────────────────────
+let key = sessionStorage.getItem('lc_k') || '';
+let provider = sessionStorage.getItem('lc_pv') || null;
+let model = sessionStorage.getItem('lc_m') || '';
+let chats = JSON.parse(sessionStorage.getItem('lc_chats') || '[]');
+let activeChatId = null;
+let mode = 'chat', afile = null, afcont = null, tok = 0, busy = false;
+let recents = JSON.parse(sessionStorage.getItem('lc_r') || '[]');
+// ── System prompt ──────────────────────────────────────────────────────────
+function buildSP(mode) {
+  const base = `Du bist Lucien — ein persönlicher KI-Assistent, der als eigenständige App auf dem Smartphone läuft.
+DEINE IDENTITÄT:
+- Dein Name ist Lucien. Du bist kein Chatbot einer Firma, kein Grok, kein ChatGPT, kein Gemini, kein Claude.
+- Du wurdest als persönlicher Assistent entwickelt und läufst als PWA direkt auf dem Gerät des Nutzers.
+- Falls du nach deiner Herkunft gefragt wirst: Du bist Lucien, ein persönlicher KI-Assistent. Mehr musst du nicht sagen.
+DEINE FÄHIGKEITEN:
+- Allgemeine Fragen beantworten und Themen erklären
+- Texte schreiben, überarbeiten und verbessern
+- E-Mails und Nachrichten verfassen
+- Termine und Aufgaben planen und zusammenfassen
+- Notizen strukturieren
+- Dateien und Bilder analysieren (wenn angehängt)
+- Auf Deutsch und Englisch kommunizieren
+- Kreativ helfen: Ideen, Brainstorming, Geschichten
+WAS DU NICHT KANNST:
+- Kein Internetzugang, kein aktuelles Wissen nach Trainingsschnitt
+- Keine Dateien speichern, keine E-Mails wirklich versenden, keine Kalendereinträge erstellen
+- Keine Bilder generieren
+STIL:
+- Antworte immer auf Deutsch, außer der Nutzer schreibt Englisch
+- Duze den Nutzer, sei freundlich, direkt und kompetent
+- Keine langen Einleitungen — komm schnell zum Punkt`;
+  const extras = {
+    email: '\n\nMODUS E-MAIL: Hilf dem Nutzer eine E-Mail zu schreiben. Frag kurz nach: An wen? Was ist der Inhalt? Welcher Ton? Dann schreib die fertige E-Mail inklusive Betreff.',
+    calendar: '\n\nMODUS TERMIN: Hilf dem Nutzer einen Termin zu planen. Frag nach: Datum/Uhrzeit? Dauer? Ort? Mit wem? Dann erstell eine klare Terminübersicht.',
+    note: '\n\nMODUS NOTIZ: Hilf dem Nutzer Notizen zu erstellen oder zu strukturieren. Formatiere gut, nutze Überschriften und Listen wo sinnvoll.',
+    file: '\n\nMODUS DATEI: Der Nutzer hat eine Datei angehängt. Analysiere den Inhalt gründlich, fass die wichtigsten Punkte zusammen.',
+    photo: '\n\nMODUS FOTO: Der Nutzer hat ein Bild angehängt. Beschreibe was du siehst, extrahiere Text wenn vorhanden, beantworte Fragen zum Bild.',
+    message: '\n\nMODUS NACHRICHT: Hilf dem Nutzer eine kurze Nachricht zu schreiben. Frag nach: An wen? Was soll rüber kommen? Ton? Dann schreib die fertige Nachricht.'
+  };
+  return base + (extras[mode] || '');
+}
+// ── Chat session helpers ───────────────────────────────────────────────────
+function getChat(id) { return chats.find(c => c.id === id); }
+function saveChats() { sessionStorage.setItem('lc_chats', JSON.stringify(chats)); }
+function genId() { return Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
+function newChat(startMode) {
+  const id = genId();
+  const m = startMode || 'chat';
+  chats.unshift({id, title:'Neuer Chat', mode:m, msgs:[], created:Date.now()});
+  saveChats();
+  openChat(id);
+  if(startMode) setModeById(m);
+}
+function openChat(id) {
+  activeChatId = id;
+  const c = getChat(id);
+  if(!c) return;
+  const msgsEl = document.getElementById('msgs');
+  msgsEl.innerHTML = '';
+  if(!c.msgs.length) {
+    msgsEl.innerHTML = '<div class="es" id="es"><div class="eg"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--a)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2
